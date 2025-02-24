@@ -3,20 +3,16 @@ package com.example.EmployeePayrollApp.controller;
 import com.example.EmployeePayrollApp.dto.EmployeeDTO;
 import com.example.EmployeePayrollApp.model.Employee;
 import com.example.EmployeePayrollApp.service.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/employees")
+@RequiredArgsConstructor
 public class EmployeeController {
     private final EmployeeService service;
-
-    @Autowired
-    public EmployeeController(EmployeeService service) {
-        this.service = service;
-    }
 
     @GetMapping
     public List<Employee> getAllEmployees() {

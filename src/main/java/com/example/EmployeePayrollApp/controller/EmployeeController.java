@@ -1,4 +1,4 @@
-package com.example.EmployeePayrollApp.controlller;
+package com.example.EmployeePayrollApp.controller;
 
 import com.example.EmployeePayrollApp.dto.EmployeeDTO;
 import com.example.EmployeePayrollApp.model.Employee;
@@ -11,8 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
+    private final EmployeeService service;
+
     @Autowired
-    private EmployeeService service;
+    public EmployeeController(EmployeeService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public List<Employee> getAllEmployees() {

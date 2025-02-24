@@ -11,8 +11,12 @@ import java.util.Optional;
 
 @Service
 public class EmployeeService {
+    private final EmployeeRepository repository;
+
     @Autowired
-    private EmployeeRepository repository;
+    public EmployeeService(EmployeeRepository repository) {
+        this.repository = repository;
+    }
 
     public List<Employee> getAllEmployees() {
         return repository.findAll();
@@ -25,6 +29,7 @@ public class EmployeeService {
     public Employee saveEmployee(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
         employee.setName(employeeDTO.getName());
+        employee.setDepartment(employeeDTO.getDepartment());
         employee.setSalary(employeeDTO.getSalary());
         return repository.save(employee);
     }
@@ -34,6 +39,7 @@ public class EmployeeService {
         if (existingEmployee.isPresent()) {
             Employee emp = existingEmployee.get();
             emp.setName(updatedEmployeeDTO.getName());
+            emp.setDepartment(updatedEmployeeDTO.getDepartment());
             emp.setSalary(updatedEmployeeDTO.getSalary());
             return repository.save(emp);
         }

@@ -8,5 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 public class EmployeeDTO {
     private String name;
+    private String department;
     private double salary;
 }

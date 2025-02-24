@@ -17,6 +17,8 @@ public class Employee {
     @Column(nullable = false)
     private String name;
 
+    private String department;
+
     @Column(nullable = false)
     private double salary;
 }

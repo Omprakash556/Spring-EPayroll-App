@@ -11,12 +11,8 @@ import java.util.Optional;
 
 @Service
 public class EmployeeService {
-    private final EmployeeRepository repository;
-
     @Autowired
-    public EmployeeService(EmployeeRepository repository) {
-        this.repository = repository;
-    }
+    private EmployeeRepository repository;
 
     public List<Employee> getAllEmployees() {
         return repository.findAll();

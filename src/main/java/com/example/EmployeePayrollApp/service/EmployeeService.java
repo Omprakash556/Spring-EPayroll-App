@@ -1,5 +1,6 @@
 package com.example.EmployeePayrollApp.service;
 
+import com.example.EmployeePayrollApp.dto.EmployeeDTO;
 import com.example.EmployeePayrollApp.model.Employee;
 import com.example.EmployeePayrollApp.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +22,19 @@ public class EmployeeService {
         return repository.findById(id).orElse(null);
     }
 
-    public Employee saveEmployee(Employee employee) {
+    public Employee saveEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        employee.setName(employeeDTO.getName());
+        employee.setSalary(employeeDTO.getSalary());
         return repository.save(employee);
     }
 
-    public Employee updateEmployee(Long id, Employee updatedEmployee) {
+    public Employee updateEmployee(Long id, EmployeeDTO updatedEmployeeDTO) {
         Optional<Employee> existingEmployee = repository.findById(id);
         if (existingEmployee.isPresent()) {
             Employee emp = existingEmployee.get();
-            emp.setName(updatedEmployee.getName());
-            emp.setSalary(updatedEmployee.getSalary());
-            emp.setDepartment(updatedEmployee.getDepartment());
+            emp.setName(updatedEmployeeDTO.getName());
+            emp.setSalary(updatedEmployeeDTO.getSalary());
             return repository.save(emp);
         }
         return null;

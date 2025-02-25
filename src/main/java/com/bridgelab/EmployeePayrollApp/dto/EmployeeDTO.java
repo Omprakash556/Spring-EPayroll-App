@@ -1,4 +1,4 @@
-package com.example.EmployeePayrollApp.dto;
+package com.bridgelab.EmployeePayrollApp.dto;
 
 import lombok.*;
 

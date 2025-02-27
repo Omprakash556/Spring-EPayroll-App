@@ -1,6 +1,7 @@
 package com.bridgelab.EmployeePayrollApp.controller;
 
 import com.bridgelab.EmployeePayrollApp.dto.EmployeeDTO;
+import com.bridgelab.EmployeePayrollApp.exception.EmployeeNotFoundException;
 import com.bridgelab.EmployeePayrollApp.logging.LoggerService;
 import com.bridgelab.EmployeePayrollApp.model.Employee;
 import com.bridgelab.EmployeePayrollApp.service.EmployeeService;
@@ -25,7 +26,7 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public Employee getEmployeeById(@PathVariable Long id) {
         logger.info("Received request to fetch employee with ID: {}", id);
-        return service.getEmployeeById(id);
+        return service.getEmployeeById(id).orElseThrow(() -> new EmployeeNotFoundException("Employee not found with ID: " + id));
     }
 
     @PostMapping

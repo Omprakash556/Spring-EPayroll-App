@@ -21,4 +21,5 @@ public class Employee {
 
     @Column(nullable = false)
     private double salary;
+
 }

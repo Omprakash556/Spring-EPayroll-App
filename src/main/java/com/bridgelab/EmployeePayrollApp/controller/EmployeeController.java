@@ -1,14 +1,12 @@
-
 package com.bridgelab.EmployeePayrollApp.controller;
 
-//import com.bridgelab.EmployeePayrollApp.dto.EmployeeDTO;
 import com.bridgelab.EmployeePayrollApp.dto.EmployeeDTO;
 import com.bridgelab.EmployeePayrollApp.logging.LoggerService;
 import com.bridgelab.EmployeePayrollApp.model.Employee;
 import com.bridgelab.EmployeePayrollApp.service.EmployeeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -31,13 +29,13 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee createEmployee(@RequestBody EmployeeDTO employeeDTO) {
+    public Employee createEmployee(@Valid @RequestBody EmployeeDTO employeeDTO) {
         logger.info("Received request to create employee: {}", employeeDTO);
         return service.saveEmployee(employeeDTO);
     }
 
     @PutMapping("/{id}")
-    public Employee updateEmployee(@PathVariable Long id, @RequestBody EmployeeDTO updatedEmployeeDTO) {
+    public Employee updateEmployee(@PathVariable Long id, @Valid @RequestBody EmployeeDTO updatedEmployeeDTO) {
         logger.info("Received request to update employee with ID: {}", id);
         return service.updateEmployee(id, updatedEmployeeDTO);
     }

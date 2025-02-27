@@ -1,3 +1,4 @@
+
 package com.bridgelab.EmployeePayrollApp.dto;
 
 import lombok.*;
